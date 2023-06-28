@@ -1,0 +1,22 @@
+//  2. Refer to the tables below, Write a sql query for finding the subjects for each
+    student, the subjects should be order by alphabetically .
+
+// Sqlite query
+
+
+SELECT 
+  c.customerId, c.name, GROUP_CONCAT(s.subjectName, ", ") AS subjects
+  FROM customers AS c
+  JOIN "Subject student mapping" AS m ON c.customerId = customerId
+  JOIN Subjects AS s ON m.subjectId = s.subjectId
+  GROUP BY c.customerId
+  ORDER BY c.name;
+
+
+// Sample output:
+
+customerId           name             subjects
+---------------------------------------------------
+1                Ravi               English, Hindi, Maths
+2                Kishan             English 
+3                Sameer             English, Maths
